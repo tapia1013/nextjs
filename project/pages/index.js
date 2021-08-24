@@ -98,4 +98,3 @@ export const getStaticProps = async () => {
   }
 }
 
-// video 6 @ 6:25sec
