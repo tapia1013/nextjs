@@ -7,7 +7,8 @@ import matter from 'gray-matter';
 
 
 
-export default function Home() {
+
+export default function Home({ posts }) {
   return (
     <Layout>
       <Head>
@@ -32,15 +33,27 @@ export default function Home() {
       <div id="main">
         {/* One */}
         <section id="one" className="tiles">
-          <article>
-            <span className="image">
-              <img src="images/pic01.jpg" alt="" />
-            </span>
-            <header className="major">
-              <h3><a href="landing.html" className="link">Aliquam</a></h3>
-              <p>Ipsum dolor sit amet</p>
-            </header>
-          </article>
+
+          {/** loop over posts */}
+          {
+            posts.map((post) => (
+              <article>
+                <span className="image">
+                  <img src={`/assets/images/${post.featured_image}`} alt="" />
+                </span>
+                <header className="major">
+                  <h3>
+                    <a href="/{post.slug}" className="link">
+                      {post.title}
+                    </a>
+                  </h3>
+                  <p>Ipsum dolor sit amet</p>
+                </header>
+              </article>
+            ))
+          }
+
+
 
         </section>
         {/* Two */}
@@ -74,26 +87,31 @@ export const getStaticProps = async () => {
   const sortPosts = () => {
     const allPosts = fs.readdirSync('posts').map((filename) => {
       const file = fs.readFileSync(path.join('posts', filename)).toString();
+      // console.log(file);
+
       const postData = matter(file);
+      // console.log(postData);
 
       return {
         content: postData.content,
         title: postData.data.title,
-        featured_image: postData.featured_image,
-        date: postData.data.date
+        featured_image: postData.data.featured_image,
+        date: postData.data.date,
+        slug: postData.data.slug
       };
       // console.log(`name: ${data.data.date}`);
     });
+    // console.log(allPosts);
 
-    return allPosts.sort(
-      (a, b) => new moment(a.date).format('YYYY-MM-DD HH:mm:ss') < new moment(b.date).format('YYYY-MM-DD HH:mm:ss')
-    );
+    return allPosts.sort((a, b) => new moment(a.date).format('YYYY-MM-DD HH:mm:ss') < new moment(b.date).format('YYYY-MM-DD HH:mm:ss'));
   };
-  console.log(fs.readdirSync('posts'));
-  sortPosts()
+  // console.log(fs.readdirSync('posts'));
+
+
+
   return {
     props: {
-      slug: 'test'
+      posts: sortPosts()
     }
   }
 }
