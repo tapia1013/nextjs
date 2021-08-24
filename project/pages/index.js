@@ -4,7 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import moment from 'moment';
 import matter from 'gray-matter';
-
+import Link from 'next/link';
 
 
 
@@ -43,9 +43,9 @@ export default function Home({ posts }) {
                 </span>
                 <header className="major">
                   <h3>
-                    <a href="/{post.slug}" className="link">
+                    <Link href={`/${post.slug}`} className="link">
                       {post.title}
-                    </a>
+                    </Link>
                   </h3>
                   <p>Ipsum dolor sit amet</p>
                 </header>
