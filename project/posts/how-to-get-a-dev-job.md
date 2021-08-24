@@ -1,4 +1,9 @@
-# How To Get A Dev Job
+---
+title: How To Get A Dev Jobs
+slug: how-to-get-a-dev-job
+featured_image: how-to-get-a-dev-job.png
+date: "2021-03-01 12:33:23"
+---
 
 ## This is a blog post about a Javascript frameworks
 

@@ -1,4 +1,9 @@
-# My Favorite Dogs
+---
+title: My Favorite Dogs
+slug: favorite-dogs
+featured_image: favorite-dogs.jpg
+date: "2021-01-20 12:33:23"
+---
 
 ## Cookie and Nye Are My Fav Dogs Lol
 
